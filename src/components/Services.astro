@@ -1,0 +1,31 @@
+---
+import { services } from '../data/services';
+---
+
+<section id="servicios" class="relative bg-white/60 px-6 py-20 md:py-32">
+  <span
+    class="pointer-events-none absolute left-4 top-8 select-none font-serif text-[7rem] leading-none text-ink/[0.06] md:text-[12rem]"
+    data-parallax
+    aria-hidden="true">02</span
+  >
+
+  <div class="mx-auto max-w-5xl">
+    <h2 class="font-serif text-3xl md:text-5xl" data-reveal>
+      Lo que hacemos <em class="text-accent">por tu negocio</em>
+    </h2>
+
+    <div class="mt-14 grid gap-px overflow-hidden rounded-subtle border border-ink/10 bg-ink/10 sm:grid-cols-2" data-reveal-group>
+      {
+        services.map((service) => (
+          <article class="group bg-cream p-8 transition-colors hover:bg-white md:p-10" data-reveal>
+            <span class="font-serif text-sm text-accent">{service.number}</span>
+            <h3 class="mt-4 font-serif text-2xl leading-snug md:text-3xl">
+              {service.title} <em class="text-accent">{service.emphasis}</em>
+            </h3>
+            <p class="mt-4 max-w-sm text-ink/70">{service.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

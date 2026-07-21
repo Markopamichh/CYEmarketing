@@ -1,0 +1,68 @@
+---
+import { SITE, INSTAGRAM_URL, WHATSAPP_NUMBER, CONTACT_EMAIL } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.title, description = SITE.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// Schema LocalBusiness — REEMPLAZAR: dirección exacta, geo y horarios reales
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: SITE.name,
+  description: SITE.description,
+  url: Astro.site?.toString(),
+  telephone: `+${WHATSAPP_NUMBER}`,
+  email: CONTACT_EMAIL,
+  sameAs: [INSTAGRAM_URL],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Centenario',
+    addressRegion: 'Neuquén',
+    addressCountry: 'AR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -38.8296, longitude: -68.1317 },
+  areaServed: ['Centenario', 'Neuquén', 'Alto Valle'],
+  priceRange: '$$',
+};
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph — REEMPLAZAR: /og.jpg por imagen real 1200x630 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og.jpg', Astro.site)} />
+    <meta property="og:locale" content="es_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fuentes: Fraunces (display serif) + Instrument Sans, con swap y preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Instrument+Sans:wght@400;500;600&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body class="bg-cream text-ink font-sans antialiased">
+    <slot />
+  </body>
+</html>

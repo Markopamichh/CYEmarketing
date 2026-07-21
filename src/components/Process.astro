@@ -1,0 +1,91 @@
+---
+const steps = [
+  {
+    title: 'Nos escribís y charlamos tu negocio',
+    text: 'Un mensaje por WhatsApp alcanza. Nos contás qué vendés, cómo te va y qué querés lograr. Sin compromiso.',
+  },
+  {
+    title: 'Armamos la estrategia',
+    text: 'Te proponemos un plan concreto para tu negocio y tu presupuesto: qué hacer, dónde y por qué.',
+  },
+  {
+    title: 'Ejecutamos y te mostramos resultados cada mes',
+    text: 'Nosotros hacemos el trabajo, vos ves los números: alcance, consultas, ventas. Reportes claros, todos los meses.',
+  },
+];
+---
+
+<section id="proceso" class="relative px-6 py-20 md:py-32">
+  <span
+    class="pointer-events-none absolute left-4 top-8 select-none font-serif text-[7rem] leading-none text-ink/[0.06] md:text-[12rem]"
+    data-parallax
+    aria-hidden="true">04</span
+  >
+
+  <div class="mx-auto max-w-3xl">
+    <h2 class="font-serif text-3xl md:text-5xl" data-reveal>
+      Trabajar con nosotros es <em class="text-accent">simple</em>
+    </h2>
+
+    <div class="relative mt-14 md:mt-20">
+      <!-- Línea vertical que se dibuja con el scroll -->
+      <svg
+        class="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-px overflow-visible"
+        aria-hidden="true"
+        preserveAspectRatio="none"
+        viewBox="0 0 1 100"
+      >
+        <line
+          id="process-line"
+          x1="0.5"
+          y1="0"
+          x2="0.5"
+          y2="100"
+          stroke="var(--accent)"
+          stroke-width="2"
+          pathLength="1"
+        />
+      </svg>
+
+      <ol class="space-y-12 md:space-y-16">
+        {
+          steps.map((step, i) => (
+            <li class="relative flex gap-6 md:gap-10" data-reveal>
+              <span class="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent bg-cream font-serif text-accent">
+                {i + 1}
+              </span>
+              <div>
+                <h3 class="font-serif text-xl md:text-2xl">{step.title}</h3>
+                <p class="mt-2 text-ink/70">{step.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  const line = document.getElementById('process-line');
+  if (line && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo(
+      line,
+      { strokeDasharray: 1, strokeDashoffset: 1 },
+      {
+        strokeDashoffset: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#proceso ol',
+          start: 'top 75%',
+          end: 'bottom 60%',
+          scrub: 1,
+        },
+      }
+    );
+  }
+</script>

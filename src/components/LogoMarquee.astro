@@ -1,0 +1,89 @@
+---
+import { clients } from '../data/clients';
+// Duplicamos la lista para el loop infinito del marquee
+const loop = [...clients, ...clients];
+---
+
+<section class="border-y border-ink/10 py-10 md:py-14" aria-label="Clientes">
+  <p class="mb-8 text-center text-sm uppercase tracking-[0.18em] text-ink/50">
+    Marcas de Centenario y Neuquén que ya confían en nosotros
+  </p>
+
+  <div class="marquee overflow-hidden" id="logo-marquee">
+    <div class="marquee-track flex w-max items-center gap-14 px-7 md:gap-20">
+      {
+        loop.map((client) => (
+          <span class="shrink-0">
+            {client.logo ? (
+              <img
+                src={client.logo}
+                alt={client.name}
+                class="h-8 opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 md:h-10"
+                loading="lazy"
+              />
+            ) : (
+              /* Wordmark placeholder — se reemplaza solo agregando `logo` en clients.ts */
+              <span class="whitespace-nowrap font-serif text-2xl text-ink/40 transition hover:text-accent md:text-3xl">
+                {client.name}
+              </span>
+            )}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // El movimiento lo maneja GSAP por completo; la animación CSS queda solo
+  // como fallback sin JS (modificar animation-duration en vivo hace saltar
+  // la posición, por eso acá se desactiva).
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+    const marquee = document.getElementById('logo-marquee');
+    const track = marquee?.querySelector<HTMLElement>('.marquee-track');
+    if (marquee && track) {
+      track.style.animation = 'none';
+
+      const tween = gsap.to(track, {
+        xPercent: -50,
+        duration: 28,
+        ease: 'none',
+        repeat: -1,
+      });
+
+      // Pausa suave on hover
+      marquee.addEventListener('mouseenter', () =>
+        gsap.to(tween, { timeScale: 0, duration: 0.4, overwrite: 'auto' })
+      );
+      marquee.addEventListener('mouseleave', () =>
+        gsap.to(tween, { timeScale: 1, duration: 0.4, overwrite: 'auto' })
+      );
+
+      // La velocidad reacciona levemente al scroll y vuelve sola a 1
+      let hovering = false;
+      marquee.addEventListener('mouseenter', () => (hovering = true));
+      marquee.addEventListener('mouseleave', () => (hovering = false));
+
+      let settle: gsap.core.Tween | null = null;
+      ScrollTrigger.create({
+        trigger: marquee,
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: (self) => {
+          if (hovering) return;
+          const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 1500, 2);
+          settle?.kill();
+          settle = gsap.fromTo(
+            tween,
+            { timeScale: boost },
+            { timeScale: 1, duration: 0.9, ease: 'power2.out' }
+          );
+        },
+      });
+    }
+  }
+</script>

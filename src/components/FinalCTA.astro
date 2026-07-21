@@ -1,0 +1,34 @@
+---
+import { WHATSAPP_URL, INSTAGRAM_URL } from '../data/site';
+---
+
+<section class="bg-ink px-6 py-24 text-cream md:py-36">
+  <div class="mx-auto max-w-3xl text-center" data-reveal-group>
+    <h2 class="font-serif text-4xl leading-tight md:text-6xl" data-reveal>
+      Tu negocio ya es bueno.<br />
+      Ahora hagamos que <em class="text-accent">todos lo sepan</em>.
+    </h2>
+    <p class="mx-auto mt-6 max-w-xl text-cream/70" data-reveal>
+      Contanos qué vendés y te decimos, sin vueltas, cómo podemos ayudarte a
+      crecer. La primera charla no cuesta nada.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-5" data-reveal>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener"
+        class="btn rounded-subtle bg-accent px-9 py-4 text-lg text-cream hover:bg-cream hover:text-ink"
+      >
+        Hablemos por WhatsApp
+      </a>
+      <a
+        href={INSTAGRAM_URL}
+        target="_blank"
+        rel="noopener"
+        class="link-underline text-cream/80"
+      >
+        o mandanos un DM en Instagram
+      </a>
+    </div>
+  </div>
+</section>

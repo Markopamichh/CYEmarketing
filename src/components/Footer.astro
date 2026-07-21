@@ -1,0 +1,44 @@
+---
+import {
+  SITE,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  WHATSAPP_URL,
+  CONTACT_EMAIL,
+} from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink/10 px-6 py-14">
+  <div class="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
+    <div>
+      <p class="font-serif text-2xl">{SITE.name}</p>
+      <p class="mt-3 max-w-xs text-sm text-ink/60">
+        Estudio de marketing digital en Centenario, Neuquén. Acompañamos a
+        negocios y emprendimientos del Alto Valle a crecer en redes con
+        estrategia, contenido y publicidad.
+      </p>
+    </div>
+
+    <div class="text-sm">
+      <p class="mb-3 uppercase tracking-[0.18em] text-ink/50">Contacto</p>
+      <ul class="space-y-2">
+        <li><a href={WHATSAPP_URL} target="_blank" rel="noopener" class="link-underline">WhatsApp</a></li>
+        <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="link-underline">{INSTAGRAM_HANDLE}</a></li>
+        <li><a href={`mailto:${CONTACT_EMAIL}`} class="link-underline">{CONTACT_EMAIL}</a></li>
+      </ul>
+    </div>
+
+    <div class="text-sm">
+      <p class="mb-3 uppercase tracking-[0.18em] text-ink/50">Zona de trabajo</p>
+      <p class="text-ink/60">
+        Centenario · Neuquén capital · Plottier · Cipolletti y todo el Alto
+        Valle de Río Negro y Neuquén.
+      </p>
+    </div>
+  </div>
+
+  <p class="mx-auto mt-12 max-w-5xl border-t border-ink/10 pt-6 text-xs text-ink/40">
+    © {year} {SITE.name} — Marketing digital en Centenario y Neuquén, Argentina.
+  </p>
+</footer>

@@ -1,0 +1,101 @@
+---
+import { WHATSAPP_URL } from '../data/site';
+---
+
+<section class="relative overflow-hidden px-6 pt-28 pb-20 md:pt-40 md:pb-32">
+  <div class="mx-auto max-w-5xl">
+    <p
+      class="hero-fade mb-6 text-sm uppercase tracking-[0.2em] text-ink/60"
+      data-hero-fade
+    >
+      Estudio de marketing · Centenario, Neuquén
+    </p>
+
+    <h1
+      class="font-serif text-[2.6rem] leading-[1.08] md:text-7xl"
+      id="hero-title"
+    >
+      <span class="block overflow-hidden"
+        ><span class="hero-line-inner block">Hacemos que a tu negocio</span></span
+      >
+      <span class="block overflow-hidden"
+        ><span class="hero-line-inner block"
+          >lo <em class="text-accent">encuentren</em>, lo <em class="text-accent">elijan</em></span
+        ></span
+      >
+      <span class="block overflow-hidden"
+        ><span class="hero-line-inner block">y lo <em class="text-accent">recuerden</em>.</span></span
+      >
+    </h1>
+
+    <p class="mt-8 max-w-xl text-lg text-ink/70" data-hero-fade>
+      Somos dos personas, no una agencia anónima. Trabajamos con negocios reales
+      de Centenario, Neuquén y el Alto Valle: redes, contenido, publicidad y
+      marca, con resultados que se ven.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-5" data-hero-fade>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener"
+        class="btn rounded-subtle bg-ink px-7 py-3.5 text-cream hover:bg-accent"
+      >
+        Escribinos por WhatsApp
+      </a>
+      <a href="#casos" class="link-underline text-ink/80">Ver casos de éxito ↓</a>
+    </div>
+  </div>
+
+  <!-- Asterisco decorativo que rota con el scroll -->
+  <svg
+    id="hero-asterisk"
+    class="pointer-events-none absolute -right-8 top-16 h-32 w-32 text-accent/70 md:right-16 md:top-24 md:h-48 md:w-48"
+    viewBox="0 0 100 100"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M50 8v84M14 29l72 42M14 71l72-42"
+      stroke="currentColor"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+  </svg>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    [data-hero-fade] {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.to('.hero-line-inner', { y: 0, duration: 0.9, stagger: 0.08 }).to(
+      '[data-hero-fade]',
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 },
+      '-=0.5'
+    );
+
+    gsap.to('#hero-asterisk', {
+      rotation: 120,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero-title',
+        start: 'top top',
+        end: '+=1200',
+        scrub: 1.5,
+      },
+    });
+  }
+</script>

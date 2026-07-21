@@ -1,0 +1,5 @@
+{
+  "provider_key": "claude",
+  "model_id": "claude-fable-5",
+  "reasoning_effort": "low"
+}

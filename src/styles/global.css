@@ -1,0 +1,84 @@
+:root {
+  /* REEMPLAZAR: color de acento cuando esté confirmada la paleta de la marca */
+  --accent: #c4552d;
+  --accent-soft: #f0e4d8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--accent);
+  color: #faf7f2;
+}
+
+/* Estado inicial de elementos animados por GSAP.
+   Con prefers-reduced-motion todo queda visible en su estado final. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  [data-clip-reveal] {
+    clip-path: inset(0 0 100% 0);
+  }
+  .hero-line-inner {
+    transform: translateY(110%);
+  }
+}
+
+/* Link con subrayado animado */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Botones */
+.btn {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+.btn:hover {
+  transform: scale(1.03);
+}
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Marquee infinito en CSS puro */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

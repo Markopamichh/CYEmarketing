@@ -1,0 +1,60 @@
+---
+import { testimonials } from '../data/testimonials';
+// Rotaciones fijas alternadas (-1° / +1°) para el efecto "hecho a mano"
+const tilts = ['-rotate-1', 'rotate-1', '-rotate-1', 'rotate-1'];
+---
+
+<section class="border-y border-ink/10 bg-white/60 py-20 md:py-28">
+  <div class="mx-auto max-w-5xl px-6">
+    <h2 class="font-serif text-3xl md:text-5xl" data-reveal>
+      Lo que dicen <em class="text-accent">nuestros clientes</em>
+    </h2>
+  </div>
+
+  <div
+    id="testimonial-track"
+    class="mt-12 flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 [scrollbar-width:thin] md:px-[max(1.5rem,calc((100vw-64rem)/2))]"
+    data-reveal-group
+  >
+    {
+      testimonials.map((t, i) => (
+        <blockquote
+          class={`w-[85%] shrink-0 snap-start rounded-subtle border border-ink/10 bg-cream p-8 sm:w-96 ${tilts[i % tilts.length]}`}
+          data-reveal
+        >
+          <p class="text-ink/80">“{t.quote}”</p>
+          <footer class="mt-6">
+            <span class="block font-serif text-lg">{t.author}</span>
+            <span class="text-sm text-ink/60">{t.business}</span>
+          </footer>
+        </blockquote>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  // Drag-to-scroll en desktop (en móvil el scroll táctil nativo alcanza)
+  const track = document.getElementById('testimonial-track');
+  if (track) {
+    let down = false;
+    let startX = 0;
+    let startScroll = 0;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      down = true;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.style.cursor = 'grabbing';
+      track.style.scrollSnapType = 'none';
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (down) track.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    window.addEventListener('pointerup', () => {
+      down = false;
+      track.style.cursor = 'grab';
+      track.style.scrollSnapType = '';
+    });
+  }
+</script>
