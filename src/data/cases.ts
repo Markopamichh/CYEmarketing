@@ -80,4 +80,17 @@ export const cases: CaseStudy[] = [
     metricLabel: 'ventas por Instagram en 3 meses',
     image: '/cases/lo-quiero-showroom.jpg',
   },
+  {
+    client: 'Zen Market',
+    category: 'Contenido + publicidad',
+    problem:
+      'Un negocio de venta de celulares en un rubro con mucha competencia y desconfianza: costaba diferenciarse de los revendedores informales y generar consultas serias.',
+    solution:
+      'Profesionalizamos el perfil con contenido claro de precios, garantía y financiación, y campañas en Meta segmentadas por zona que llevan las consultas directo a WhatsApp.',
+    metricValue: 150,
+    metricPrefix: '+',
+    metricSuffix: '%',
+    metricLabel: 'de consultas por WhatsApp en 3 meses',
+    image: '/cases/zen-market.jpg',
+  },
 ];

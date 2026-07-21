@@ -14,5 +14,5 @@ export const clients: Client[] = [
   { name: 'El Rincón de Aurora' },
   { name: 'Estudio RZ Jurídico' },
   { name: 'Lo Quiero Showroom' },
-  { name: 'Cliente 7' },
+  { name: 'Zen Market' },
 ];
