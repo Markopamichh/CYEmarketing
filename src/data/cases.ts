@@ -54,4 +54,30 @@ export const cases: CaseStudy[] = [
     metricLabel: 'de seguidores en 2 meses',
     image: '/cases/rincon-aurora.jpg',
   },
+  {
+    client: 'Estudio RZ Jurídico',
+    category: 'Marca + contenido',
+    problem:
+      'Un estudio jurídico serio pero invisible en internet: sin presencia en redes, dependían solo de recomendaciones y les costaba llegar a clientes nuevos.',
+    solution:
+      'Armamos una presencia profesional en Instagram con contenido que explica temas legales en simple, y posicionamos al estudio como referente cercano en la zona.',
+    metricValue: 120,
+    metricPrefix: '+',
+    metricSuffix: '%',
+    metricLabel: 'de consultas nuevas en 4 meses',
+    image: '/cases/estudio-rz.jpg',
+  },
+  {
+    client: 'Lo Quiero Showroom',
+    category: 'Redes + publicidad',
+    problem:
+      'Un showroom de ropa con buen producto pero ventas irregulares: publicaban sin plan, las historias no convertían y el alcance no salía de sus seguidoras.',
+    solution:
+      'Definimos un calendario de lanzamientos, mejoramos la estética del feed y sumamos campañas en Meta para llegar a mujeres de Centenario y Neuquén.',
+    metricValue: 2,
+    metricPrefix: '',
+    metricSuffix: 'x',
+    metricLabel: 'ventas por Instagram en 3 meses',
+    image: '/cases/lo-quiero-showroom.jpg',
+  },
 ];
