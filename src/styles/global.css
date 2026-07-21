@@ -1,7 +1,7 @@
 :root {
   /* REEMPLAZAR: color de acento cuando esté confirmada la paleta de la marca */
-  --accent: #c4552d;
-  --accent-soft: #f0e4d8;
+  --accent: #a68a64;
+  --accent-soft: #ece3d3;
 }
 
 html {
