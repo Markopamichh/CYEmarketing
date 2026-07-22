@@ -1,6 +1,6 @@
 // ─── Datos de contacto y marca ───────────────────────────────
-// REEMPLAZAR: número de WhatsApp real (formato internacional, sin + ni espacios)
-export const WHATSAPP_NUMBER = '5492990000000';
+// Número real: 2984 73-4749 (formato internacional para wa.me: 549 + área + número)
+export const WHATSAPP_NUMBER = '5492984734749';
 
 export const WHATSAPP_MESSAGE = '¡Hola CYE! Quiero hacer crecer mi negocio 🙌';
 

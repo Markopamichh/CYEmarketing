@@ -16,17 +16,17 @@ export interface CaseStudy {
 
 export const cases: CaseStudy[] = [
   {
-    client: 'Mary Tierra',
+    client: 'Mar y Tierra',
     category: 'Redes + contenido',
     problem:
-      'Una dietética con productos increíbles pero un Instagram dormido: publicaban cada tanto, sin estética definida y casi sin consultas.',
+      'Una rotiseria con productos increíbles pero un Instagram dormido: publicaban cada tanto, sin estética definida y casi sin consultas.',
     solution:
-      'Rediseñamos el feed, armamos un calendario de contenido semanal y empezamos a mostrar los productos con fotos propias y recetas.',
+      'Rediseñamos el feed, armamos un calendario de contenido semanal y empezamos a mostrar los productos con fotos propias y de la comida.',
     metricValue: 180,
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de alcance en 3 meses',
-    image: '/cases/mary-tierra.jpg',
+    image: '/cases/mar-y-tierra.jpg',
   },
   {
     client: 'Martínez Detailing',

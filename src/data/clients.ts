@@ -9,7 +9,7 @@ export interface Client {
 
 export const clients: Client[] = [
   { name: 'Tune' },
-  { name: 'Mary Tierra' },
+  { name: 'Mar y Tierra' },
   { name: 'Martínez Detailing' },
   { name: 'El Rincón de Aurora' },
   { name: 'Estudio RZ Jurídico' },

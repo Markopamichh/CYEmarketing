@@ -12,7 +12,7 @@ export const testimonials: Testimonial[] = [
     quote:
       'Antes publicaba cuando me acordaba y no pasaba nada. Desde que trabajamos juntos me escriben por WhatsApp todas las semanas preguntando por los productos. Y lo mejor: me responden los mensajes el mismo día, no como otras agencias.',
     author: 'Marisa',
-    business: 'Mary Tierra',
+    business: 'Mar y Tierra',
   },
   {
     quote:
