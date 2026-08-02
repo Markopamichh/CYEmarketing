@@ -14,8 +14,34 @@ const links = [
     class="mx-auto flex max-w-4xl items-center justify-between rounded-full border border-ink/10 bg-cream/95 py-3 pl-6 pr-3 shadow-[0_1px_2px_rgba(28,27,24,0.06)]"
     aria-label="Principal"
   >
-    <a href="#" class="font-serif text-xl tracking-tight">
-      CYE<em class="text-accent">.</em>studio
+    <a href="#" class="flex items-center" aria-label={`${SITE.name} — inicio`}>
+      <!-- Logo C&E Studio recreado en SVG (hereda el color con currentColor) -->
+      <svg
+        class="h-8 w-auto text-ink"
+        viewBox="0 0 132 44"
+        fill="none"
+        role="img"
+        aria-label="C&E Studio"
+      >
+        <text
+          x="66"
+          y="24"
+          text-anchor="middle"
+          font-family="Fraunces, Georgia, serif"
+          font-size="26"
+          font-weight="500"
+          fill="currentColor"
+        >C<tspan fill="var(--accent)" font-style="italic" font-size="20" dx="1">&amp;</tspan><tspan dx="1">E</tspan></text>
+        <text
+          x="66"
+          y="39"
+          text-anchor="middle"
+          font-family="'Instrument Sans', system-ui, sans-serif"
+          font-size="9"
+          letter-spacing="4"
+          fill="currentColor"
+        >STUDIO</text>
+      </svg>
     </a>
 
     <ul class="hidden items-center gap-8 text-sm md:flex">
