@@ -25,40 +25,42 @@ import { cases } from '../data/cases';
             data-reveal-group
           >
             <figure data-reveal>
-              <div
-                class="relative aspect-[4/3] overflow-hidden rounded-subtle border border-ink/10 bg-accent-soft"
-                data-clip-reveal
-              >
-                {
-                  c.image ? (
-                    /* Cuando haya foto real del proyecto se muestra acá */
+              {
+                c.image ? (
+                  /* Cuando haya foto real del proyecto se muestra acá */
+                  <div
+                    class="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink/10 bg-accent-soft"
+                    data-clip-reveal
+                  >
                     <img
                       src={c.image}
                       alt={`Trabajo para ${c.client}`}
                       class="h-full w-full object-cover"
                       loading="lazy"
                     />
-                  ) : (
-                    /* Sin foto todavía: prueba social con link al Instagram */
-                    <a
-                      href={c.link}
-                      target="_blank"
-                      rel="noopener"
-                      class="group flex h-full flex-col items-center justify-center gap-3 p-6 text-center"
-                    >
-                      <span class="font-serif text-2xl text-accent md:text-3xl">{c.client}</span>
-                      <span class="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-cream/80 px-4 py-2 text-sm text-ink/70 transition-colors group-hover:border-accent group-hover:text-accent">
-                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                          <rect x="3" y="3" width="18" height="18" rx="5" />
-                          <circle cx="12" cy="12" r="4" />
-                          <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
-                        </svg>
-                        Ver el trabajo en Instagram
-                      </span>
-                    </a>
-                  )
-                }
-              </div>
+                  </div>
+                ) : (
+                  /* Sin foto todavía: prueba social con link al Instagram + tilt 3D */
+                  <a
+                    href={c.link}
+                    target="_blank"
+                    rel="noopener"
+                    class="group relative mx-auto flex aspect-[5/4] max-w-xs flex-col items-center justify-center gap-3 overflow-hidden rounded-3xl border border-ink/10 bg-accent-soft/60 p-6 text-center transition-shadow hover:shadow-[0_20px_40px_-24px_rgba(28,27,24,0.35)]"
+                    data-tilt
+                  >
+                    <span class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" data-tilt-glare></span>
+                    <span class="font-serif text-2xl text-accent md:text-3xl">{c.client}</span>
+                    <span class="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-cream/80 px-4 py-2 text-sm text-ink/70 transition-colors group-hover:border-accent group-hover:text-accent">
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
+                      </svg>
+                      Ver en Instagram
+                    </span>
+                  </a>
+                )
+              }
             </figure>
 
             <div data-reveal>
@@ -81,3 +83,37 @@ import { cases } from '../data/cases';
     </div>
   </div>
 </section>
+
+<script>
+  // Tilt 3D + glare siguiendo el cursor (solo en dispositivos con hover fino
+  // y si no está activo prefers-reduced-motion). Vanilla, sin dependencias.
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canHover && !reduce) {
+    const MAX = 10;
+    document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
+      const glare = card.querySelector<HTMLElement>('[data-tilt-glare]');
+      card.style.transformStyle = 'preserve-3d';
+      card.style.transition = 'transform 0.2s cubic-bezier(0.16,1,0.3,1)';
+
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const ry = (px - 0.5) * MAX;
+        const rx = (0.5 - py) * MAX;
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        if (glare) {
+          glare.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%, var(--accent), transparent 55%)`;
+          glare.style.opacity = '0.18';
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        if (glare) glare.style.opacity = '0';
+      });
+    });
+  }
+</script>
