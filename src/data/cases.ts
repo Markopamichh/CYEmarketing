@@ -1,7 +1,12 @@
 // ─── Casos de éxito ──────────────────────────────────────────
-// REEMPLAZAR: métricas reales y fotos reales de cada proyecto.
+// REEMPLAZAR: métricas reales de cada proyecto.
 // `metricValue` es el número que se anima con el contador;
 // `metricPrefix`/`metricSuffix` arman el texto final (ej. "+180%", "3x").
+//
+// `link`  → URL al post/reel de Instagram que sirve como prueba (opcional).
+// `image` → foto real del proyecto en /public (opcional). Si no hay imagen,
+//           se muestra un bloque con el botón "Ver en Instagram". Cuando
+//           tengan la foto, agregá `image` y se usa en lugar del placeholder.
 export interface CaseStudy {
   client: string;
   category: string;
@@ -11,7 +16,8 @@ export interface CaseStudy {
   metricPrefix: string;
   metricSuffix: string;
   metricLabel: string;
-  image: string; // ruta en /public — REEMPLAZAR por foto real
+  link?: string; // post/reel de Instagram
+  image?: string; // ruta en /public — agregar cuando tengan la foto
 }
 
 export const cases: CaseStudy[] = [
@@ -26,7 +32,8 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de alcance en 3 meses',
-    image: '/cases/mar-y-tierra.jpg',
+    // REEMPLAZAR: link al reel/post real de este caso
+    link: 'https://instagram.com/cye.studio',
   },
   {
     client: 'Martínez Detailing',
@@ -39,7 +46,8 @@ export const cases: CaseStudy[] = [
     metricPrefix: '',
     metricSuffix: 'x',
     metricLabel: 'consultas por WhatsApp',
-    image: '/cases/martinez-detailing.jpg',
+    // REEMPLAZAR: link al reel/post real de este caso
+    link: 'https://instagram.com/cye.studio',
   },
   {
     client: 'El Rincón de Aurora',
@@ -52,7 +60,8 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de seguidores en 2 meses',
-    image: '/cases/rincon-aurora.jpg',
+    // REEMPLAZAR: link al reel/post real de este caso
+    link: 'https://instagram.com/cye.studio',
   },
   {
     client: 'Estudio RZ Jurídico',
@@ -65,7 +74,8 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de consultas nuevas en 4 meses',
-    image: '/cases/estudio-rz.jpg',
+    // REEMPLAZAR: link al reel/post real de este caso
+    link: 'https://instagram.com/cye.studio',
   },
   {
     client: 'Lo Quiero Showroom',
@@ -78,7 +88,8 @@ export const cases: CaseStudy[] = [
     metricPrefix: '',
     metricSuffix: 'x',
     metricLabel: 'ventas por Instagram en 3 meses',
-    image: '/cases/lo-quiero-showroom.jpg',
+    // REEMPLAZAR: link al reel/post real de este caso
+    link: 'https://instagram.com/lo_quieroshowroom/',
   },
   {
     client: 'Zen Market',
@@ -91,6 +102,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de consultas por WhatsApp en 3 meses',
-    image: '/cases/zen-market.jpg',
+    // REEMPLAZAR: link al reel/post real de este caso
+    link: 'https://instagram.com/zen.markett/',
   },
 ];
