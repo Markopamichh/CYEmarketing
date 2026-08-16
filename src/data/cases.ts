@@ -32,8 +32,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de alcance en 3 meses',
-    // REEMPLAZAR: link al reel/post real de este caso
-    link: 'https://instagram.com/cye.studio',
+    link: 'https://instagram.com/p/DN1fKmf4ldf',
   },
   {
     client: 'Martínez Detailing',
@@ -46,8 +45,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '',
     metricSuffix: 'x',
     metricLabel: 'consultas por WhatsApp',
-    // REEMPLAZAR: link al reel/post real de este caso
-    link: 'https://instagram.com/cye.studio',
+    link: 'https://instagram.com/p/DUMLWj0kriV',
   },
   {
     client: 'El Rincón de Aurora',
@@ -60,8 +58,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de seguidores en 2 meses',
-    // REEMPLAZAR: link al reel/post real de este caso
-    link: 'https://instagram.com/cye.studio',
+    link: 'https://instagram.com/p/Dad6mZCtQKR',
   },
   {
     client: 'Estudio RZ Jurídico',
@@ -74,8 +71,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de consultas nuevas en 4 meses',
-    // REEMPLAZAR: link al reel/post real de este caso
-    link: 'https://instagram.com/cye.studio',
+    link: 'https://instagram.com/p/DPe9BlDkfiX',
   },
   {
     client: 'Lo Quiero Showroom',
@@ -88,8 +84,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '',
     metricSuffix: 'x',
     metricLabel: 'ventas por Instagram en 3 meses',
-    // REEMPLAZAR: link al reel/post real de este caso
-    link: 'https://instagram.com/lo_quieroshowroom/',
+    link: 'https://instagram.com/p/DaEa5cpxijU',
   },
   {
     client: 'Zen Market',
@@ -102,7 +97,7 @@ export const cases: CaseStudy[] = [
     metricPrefix: '+',
     metricSuffix: '%',
     metricLabel: 'de consultas por WhatsApp en 3 meses',
-    // REEMPLAZAR: link al reel/post real de este caso
+    // Zen no tiene reel del caso: va directo a su perfil de Instagram
     link: 'https://instagram.com/zen.markett/',
   },
 ];
