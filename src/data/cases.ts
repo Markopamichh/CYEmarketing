@@ -100,4 +100,17 @@ export const cases: CaseStudy[] = [
     // Zen no tiene reel del caso: va directo a su perfil de Instagram
     link: 'https://instagram.com/zen.markett/',
   },
+  {
+    client: 'Tune',
+    category: 'Estrategia + contenido',
+    problem:
+      'Una tienda de tecnología y accesorios para celulares con dos locales (General Roca y Centenario), pero un Instagram que publicaba sin plan: mucho producto y poco enganche, con un alcance que no crecía.',
+    solution:
+      'Definimos una línea de contenido para mostrar los productos con estilo, ordenamos las historias y lanzamientos, y le dimos al perfil una identidad reconocible en la zona.',
+    metricValue: 200,
+    metricPrefix: '+',
+    metricSuffix: '%',
+    metricLabel: 'de alcance en 3 meses',
+    link: 'https://instagram.com/p/DQ-WapwEW59',
+  },
 ];
