@@ -14,16 +14,30 @@ html {
   color: #faf7f2;
 }
 
-/* Estado inicial de elementos animados por GSAP.
-   Con prefers-reduced-motion todo queda visible en su estado final. */
+/* Estado inicial de elementos animados. El scroll los revela agregando la
+   clase .is-visible (vía IntersectionObserver, sin GSAP). Con
+   prefers-reduced-motion todo queda visible en su estado final. */
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     opacity: 0;
     transform: translateY(28px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
   [data-clip-reveal] {
     clip-path: inset(0 0 100% 0);
+    transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  [data-clip-reveal].is-visible {
+    clip-path: inset(0 0 0 0);
+  }
+
   .hero-line-inner {
     transform: translateY(110%);
   }
