@@ -84,36 +84,3 @@ import { cases } from '../data/cases';
   </div>
 </section>
 
-<script>
-  // Tilt 3D + glare siguiendo el cursor (solo en dispositivos con hover fino
-  // y si no está activo prefers-reduced-motion). Vanilla, sin dependencias.
-  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (canHover && !reduce) {
-    const MAX = 10;
-    document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
-      const glare = card.querySelector<HTMLElement>('[data-tilt-glare]');
-      card.style.transformStyle = 'preserve-3d';
-      card.style.transition = 'transform 0.2s cubic-bezier(0.16,1,0.3,1)';
-
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        const ry = (px - 0.5) * MAX;
-        const rx = (0.5 - py) * MAX;
-        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-        if (glare) {
-          glare.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%, var(--accent), transparent 55%)`;
-          glare.style.opacity = '0.18';
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-        if (glare) glare.style.opacity = '0';
-      });
-    });
-  }
-</script>

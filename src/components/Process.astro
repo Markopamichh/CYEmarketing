@@ -66,26 +66,3 @@ const steps = [
   </div>
 </section>
 
-<script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  const line = document.getElementById('process-line');
-  if (line && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.fromTo(
-      line,
-      { strokeDasharray: 1, strokeDashoffset: 1 },
-      {
-        strokeDashoffset: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#proceso ol',
-          start: 'top 75%',
-          end: 'bottom 60%',
-          scrub: 1,
-        },
-      }
-    );
-  }
-</script>

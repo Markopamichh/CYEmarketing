@@ -5,8 +5,9 @@ import { WHATSAPP_URL } from '../data/site';
 <section class="relative overflow-hidden px-6 pt-28 pb-20 md:pt-40 md:pb-32">
   <div class="mx-auto max-w-5xl">
     <p
-      class="hero-fade mb-6 text-sm uppercase tracking-[0.2em] text-ink/60"
+      class="mb-6 text-sm uppercase tracking-[0.2em] text-ink/60"
       data-hero-fade
+      style="animation-delay:.1s"
     >
       Estudio de marketing · Centenario, Neuquén
     </p>
@@ -28,13 +29,13 @@ import { WHATSAPP_URL } from '../data/site';
       >
     </h1>
 
-    <p class="mt-8 max-w-xl text-lg text-ink/70" data-hero-fade>
+    <p class="mt-8 max-w-xl text-lg text-ink/70" data-hero-fade style="animation-delay:.5s">
       Somos dos personas, no una agencia anónima. Trabajamos con negocios reales
       de Centenario, Neuquén y el Alto Valle: redes, contenido, publicidad y
       marca, con resultados que se ven.
     </p>
 
-    <div class="mt-10 flex flex-wrap items-center gap-5" data-hero-fade>
+    <div class="mt-10 flex flex-wrap items-center gap-5" data-hero-fade style="animation-delay:.62s">
       <a
         href={WHATSAPP_URL}
         target="_blank"
@@ -65,37 +66,28 @@ import { WHATSAPP_URL } from '../data/site';
 </section>
 
 <style>
+  /* Animación de entrada del hero en CSS puro: no depende de JS, así el título
+     (elemento LCP) pinta y anima al instante sin esperar a GSAP. */
   @media (prefers-reduced-motion: no-preference) {
+    .hero-line-inner {
+      transform: translateY(110%);
+      animation: heroLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    #hero-title > span:nth-child(1) .hero-line-inner { animation-delay: 0.05s; }
+    #hero-title > span:nth-child(2) .hero-line-inner { animation-delay: 0.13s; }
+    #hero-title > span:nth-child(3) .hero-line-inner { animation-delay: 0.21s; }
+
     [data-hero-fade] {
       opacity: 0;
       transform: translateY(24px);
+      animation: heroFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
   }
-</style>
 
-<script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.to('.hero-line-inner', { y: 0, duration: 0.9, stagger: 0.08 }).to(
-      '[data-hero-fade]',
-      { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 },
-      '-=0.5'
-    );
-
-    gsap.to('#hero-asterisk', {
-      rotation: 120,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero-title',
-        start: 'top top',
-        end: '+=1200',
-        scrub: 1.5,
-      },
-    });
+  @keyframes heroLine {
+    to { transform: translateY(0); }
   }
-</script>
+  @keyframes heroFade {
+    to { opacity: 1; transform: none; }
+  }
+</style>
